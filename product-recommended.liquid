@@ -1,0 +1,21 @@
+<div class="blog-widget-products">
+  {% assign related_products = article.metafields.custom.recommended_products.value %}
+   {% if related_products %}
+    <h3 class="widget-blog-title">{{section.settings.products_title}}</h3>
+     <div class = "owl-carousel owl-theme js-owl-post related-product-list">
+      {% for related_product in related_products %}
+       <a href = "{{shop.url | append: "/products/" | append: related_product.handle }}">
+        <div class="item">
+         <div class="post-img">
+           <img src = "{{related_product.featured_image | img_url: '100x100' }}" />
+          </div>
+          <div class="post-info">
+           <h5 class = "related-product-name">{{related_product.title}}</h5>
+           <div class = "related-product-price">{{related_product.price | money}}</div>
+          </div>
+        </div>
+       </a>
+      {% endfor %}
+     </div>
+   {% endif %}
+</div>
